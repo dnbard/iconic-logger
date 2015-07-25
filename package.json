@@ -1,0 +1,18 @@
+{
+    "name": "loge",
+    "version": "0.1.0",
+    "description": "Customized console.log output with icons",
+    "main": "src/source.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Alex Bardanov",
+    "license": "MIT",
+    "devDependencies": {
+        "datauri": "^0.7.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dnbard/loge.git"
+    }
+}
