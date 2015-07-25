@@ -1,18 +1,26 @@
 {
-    "name": "loge",
-    "version": "0.1.0",
-    "description": "Customized console.log output with icons",
-    "main": "src/source.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Alex Bardanov",
-    "license": "MIT",
-    "devDependencies": {
-        "datauri": "^0.7.1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dnbard/loge.git"
-    }
+  "name": "iconic-logger",
+  "version": "0.1.0",
+  "description": "Customizable iconic logger for browser",
+  "main": "src/source.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Bardanov",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^11.0.0",
+    "datauri": "^0.7.1",
+    "gulp": "^3.9.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-util": "^3.0.6",
+    "lodash.assign": "^3.2.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dnbard/iconic-logger.git"
+  }
 }
