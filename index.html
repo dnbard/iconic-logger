@@ -1,6 +1,69 @@
+<!DOCTYPE html>
 <html>
     <head>
         <script src="dist/iconic-logger.js"></script>
+        <link rel="stylesheet" href="http://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css">
     </head>
-    <body></body>
+    <body>
+        <div style="background: #6B5195; color: white;">
+            <div class="container">
+                <h1>Iconic Logger</h1>
+                <div>Customizable logger for browser with icons support</div>
+            </div>
+        </div>
+        <div class="text-center" style="margin: 10px 0;">
+            <div>Did you ever wanted to add some flavor to your <kbd>console.log</kbd> messages?</div>
+            <img src="shots/example2.png">
+            <div style="margin-top: 10px;">Just open your Development Tools in Chrome <kbd>F12</kbd> / <kbd>Cmd + Opt + I</kbd> and see it with your own eyes.</div>
+            <div style="margin-top: 10px;">Did you see icons embedded into the my secret message?</div>
+            <div>If not then unfortunately your browser do not support the image output to console.</div>
+            <div>Only <img id="chrome_icon"> Chrome can do it. And it is Awesome =)</div>
+            <hr/>
+            <h3>Instalation</h3>
+            <div><kbd>npm install iconic-logger --save</kbd></div>
+            <h3>How to use</h3>
+            <div><kbd class="text-left" style="display: inline-block;">
+                var iconicLogger = require('iconic-logger');<br/>
+                var myLogger = iconicLogger.log('chrome');<br/>
+                myLogger('Chrome is awesome!');
+            </kbd></div>
+            <div style="margin-top: 5px;">More details you can find in the <a href="https://github.com/dnbard/iconic-logger#iconic-logger">documentation</a>.</div>
+            <hr/>
+            <h3>List of default icons</h3>
+            <div style="margin-top: 30px;" class="container">
+                <div id="icons" class="row"></div>
+                <div>* click the icon to see example in the console.</div>
+            </div>
+        </div>
+
+        <script>
+            var iconsHolder = document.querySelector('#icons');
+
+            iconicLogger.log('yes')('Hi! My name is Alex Bardanov. I\'m the creator of Iconic Logger.');
+            iconicLogger.log('github')('Get the Iconic Logger from https://github.com/dnbard/iconic-logger');
+            iconicLogger.log('github')('Please report your issues here https://github.com/dnbard/iconic-logger/issues');
+            iconicLogger.log('facebook')('Or say "Hi!" to me at https://www.facebook.com/oleksandr.bardanov');
+
+            document.querySelector('#chrome_icon').setAttribute('src', iconicLogger.getIcons().filter(function(i){
+                return i.name === 'chrome';
+            })[0].path);
+
+            iconicLogger.getIcons().forEach(function(icon){
+                var element = document.createElement('div');
+
+                element.innerHTML = '<img src="' + icon.path + '">'
+                                        + ' <kbd>' + icon.name + '</kbd>';
+                element.className = 'col-md-2';
+
+                element.style.height = "60px";
+                element.style.cursor = "pointer";
+
+                element.onclick = function(){
+                    iconicLogger.log(icon.name)('You pressed "', icon.name, '". Great choice!');
+                };
+
+                iconsHolder.appendChild(element);
+            });
+        </script>
+    </body>
 </html>
