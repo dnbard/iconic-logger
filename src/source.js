@@ -9,7 +9,7 @@
         module.exports = factory();
     } else {
         // Browser globals (root is window)
-        root.loge = factory();
+        root.iconicLogger = factory();
   }
 }(window, function () {
     var icons = require('./icons'),

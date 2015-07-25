@@ -46,7 +46,7 @@ module.exports=[{"path":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYC
         module.exports = factory();
     } else {
         // Browser globals (root is window)
-        root.loge = factory();
+        root.iconicLogger = factory();
   }
 }(window, function () {
     var icons = require('./icons'),
