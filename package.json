@@ -1,6 +1,6 @@
 {
   "name": "iconic-logger",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Customizable iconic logger for browser",
   "main": "src/source.js",
   "scripts": {
@@ -22,5 +22,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/dnbard/iconic-logger.git"
+  },
+  "dependencies": {
+    "detect-browser": "^1.1.1"
   }
 }

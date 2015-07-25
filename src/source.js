@@ -12,7 +12,8 @@
         root.loge = factory();
   }
 }(window, function () {
-    var icons = require('./icons');
+    var icons = require('./icons'),
+        browser = require('detect-browser');
 
     // Just return a value to define the module export.
     // This example returns an object, but the module
@@ -55,8 +56,10 @@
 
                 templateArguments = Array.prototype.splice.call(arguments, 1);
 
-                templateArguments.unshift('background: url(' + icon.path + '); background-repeat: no-repeat; font-size: ' + icon.size + 'px;');
-                templateArguments.unshift('%c  ');
+                if (browser.name === 'chrome'){
+                    templateArguments.unshift('background: url(' + icon.path + '); background-repeat: no-repeat; font-size: ' + icon.size + 'px;');
+                    templateArguments.unshift('%c  ');
+                }
                 templateArguments.unshift(console);
 
                 return Function.prototype.bind.apply(this.operation, templateArguments);
