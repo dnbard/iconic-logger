@@ -2,7 +2,7 @@
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define([], factory);
-    } else if (typeof exports === 'object') {
+    } else if (typeof exports === 'object' && !!module.parent) {
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like environments that support module.exports,
         // like Node.
@@ -11,41 +11,8 @@
         // Browser globals (root is window)
         root.loge = factory();
   }
-}(this, function () {
-    var icons = {
-        "github":{
-            size: 16,
-            path: "https://avatars3.githubusercontent.com/u/229244?s=16"
-        },
-        "spinner":{
-            size: 16,
-            path: "http://www.ajaxload.info/images/exemples/1.gif"
-        },
-        "spinner-kit":{
-            size: 16,
-            path: "http://www.ajaxload.info/images/exemples/3.gif"
-        },
-        "spinner-arrows":{
-            size: 16,
-            path: "http://www.ajaxload.info/images/exemples/4.gif"
-        },
-        "spinner-ball":{
-            size: 16,
-            path: "http://www.ajaxload.info/images/exemples/11.gif"
-        },
-        "spinner-block":{
-            size: 16,
-            path: "http://www.ajaxload.info/images/exemples/16.gif"
-        },
-        "bouncing-ball":{
-            size: 16,
-            path: "http://www.ajaxload.info/images/exemples/7.gif"
-        },
-        "pacman":{
-            size: 24,
-            path: "http://www.ajaxload.info/images/exemples/39.gif"
-        }
-    };
+}(window, function () {
+    var icons = require('./icons');
 
     // Just return a value to define the module export.
     // This example returns an object, but the module
@@ -57,7 +24,7 @@
                 throw new Error('Invalid argument: iconName must be non-empty string');
             }
 
-            if (icons[iconName] !== undefine){
+            if (icons[iconName] !== undefined){
                 throw new Error('Invalid argument: icon already declared');
             }
 
@@ -66,17 +33,21 @@
                 path: iconPath
             };
         },
-        _handler: function(){
+        _handler: function(iconName, prefix){
             var arg, template, templateArguments, icon;
+
+            prefix = typeof prefix === 'string' ? prefix : '';
 
             if (typeof this.operation !== 'function'){
                 throw new Error('Invalid context: operation must be a function');
             }
 
-            if (icons[arguments[0]] === undefined){
+            if (typeof iconName !== 'string'){
                 throw new Error('Invalid parameter: icon must be specified');
             } else {
-                icon = icons[arguments[0]];
+                icon = icons.filter(function(i){
+                    return i.name === iconName;
+                })[0];
 
                 if (icon === undefined){
                     throw new Error('Invalid parameter: icon not found');
@@ -104,9 +75,9 @@
             return icons;
         },
         getIconNames: function(){
-            var iconNames = [];
-            for (icon in icons){ iconNames.push(icon); }
-            return iconNames;
+            return icons.map(function(i){
+                return i.name;
+            });
         }
     }
 }));
